@@ -1,0 +1,4 @@
+@EndUserText.label: '存貨進銷存Service Definition'
+define service ZZ1_ZCO01_SD {
+  expose ZZ1_I_ZCO01;
+}

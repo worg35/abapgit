@@ -1,0 +1,54 @@
+managed implementation in class zz1_cl_com03 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZZ1_I_COM03
+
+persistent table zz1_com03
+draft table zz1_com03_d
+lock master total etag CreatedAt
+authorization master ( global )
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) com03uuid;
+  field ( mandatory : create ) companycode, reportnumber, serialnumber;
+  field ( readonly : update ) companycode, reportnumber, reportrow, reportcolumn, serialnumber;
+  field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+
+  determination process_data on save { create; field companycode, reportnumber, reportrow, reportcolumn, serialnumber; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zz1_com03
+    {
+      COM03UUID         = COM03_UUID;
+      COMPANYCODE       = BUKRS;
+      REPORTNUMBER      = RPTNO;
+      REPORTROW         = RPTRW;
+      REPORTCOLUMN      = RPTCL;
+      SERIALNUMBER      = RSEQ;
+      OPERATION         = OPCD;
+      SOURCETYPE        = SRCTY;
+      VALUATIONCLASS    = BKLAS;
+      GOODSMOVEMENTTYPE = BWART;
+      MATERIALLEDGERCATEGORY    = CATEG;
+      PROCESSCATEGORY   = PTYP;
+      GLACCOUNT         = HKONT;
+      ACCOUNTTO         = HKOTT;
+      FUNCTIONAREA      = FKBER;
+      COSTELEMENT       = KSTAR;
+      SOURCEROW         = SRCRW;
+      SOURCECOLUMN      = SRCCL;
+      CREATEDBY         = ERNAM;
+      CREATEDAT         = ERTMP;
+      LASTCHANGEDBY     = LAENAM;
+      LASTCHANGEDAT     = LAETMP;
+    }
+}

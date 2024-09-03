@@ -1,0 +1,5 @@
+@EndUserText.label: '成本報表列次Service Definition'
+define service ZZ1_COM0203_SD {
+  expose ZZ1_PV_COM02;
+  expose ZZ1_PV_COM03;
+}
